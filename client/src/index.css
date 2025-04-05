@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Lora:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 25% 98%;
+    --foreground: 30 35% 15%;
+    
+    --card: 35 30% 100%;
+    --card-foreground: 30 35% 15%;
+    
+    --popover: 35 30% 100%;
+    --popover-foreground: 30 35% 15%;
+    
+    --primary: 32 45% 35%;
+    --primary-foreground: 35 25% 98%;
+    
+    --secondary: 35 25% 95%;
+    --secondary-foreground: 30 35% 15%;
+    
+    --muted: 30 20% 80%;
+    --muted-foreground: 30 25% 25%;
+    
+    --accent: 45 60% 45%;
+    --accent-foreground: 35 25% 92%;
+    
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 35 25% 92%;
+    
+    --border: 32 30% 60%;
+    --input: 32 30% 60%;
+    --ring: 45 60% 45%;
+    
+    --radius: 0.5rem;
+
+    --chart-1: 120 30% 35%;
+    --chart-2: 32 60% 45%;
+    --chart-3: 42 65% 60%;
+    --chart-4: 32 40% 20%;
+    --chart-5: 0 65% 50%;
+
+    --sidebar-background: 120 30% 35%;
+    --sidebar-foreground: 40 30% 95%;
+    --sidebar-primary: 32 60% 45%;
+    --sidebar-primary-foreground: 40 30% 95%;
+    --sidebar-accent: 40 30% 95%;
+    --sidebar-accent-foreground: 120 30% 35%;
+    --sidebar-border: 120 35% 45%;
+    --sidebar-ring: 32 60% 45%;
+    
+    /* D&D themed colors */
+    --parchment: 40 40% 92%;
+    --parchment-dark: 35 35% 85%;
+    --leather: 25 45% 40%;
+    --wood-light: 30 40% 70%;
+    --wood-dark: 20 40% 30%;
+    --forest-green: 145 40% 35%;
+    --forest-dark: 145 45% 20%;
+    --dragon-red: 0 65% 50%;
+    --magic-purple: 270 50% 40%;
+    --gold: 45 80% 60%;
+    --silver: 210 20% 80%;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  html, body {
+    @apply bg-secondary text-foreground font-fell;
+    background-color: hsl(var(--secondary));
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,10 Q50,5 70,10 Q75,30 70,50 Q50,55 30,50 Q25,30 30,10' fill='none' stroke='%23806342' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,5 L55,45 L5,45 Z' fill='none' stroke='%23557153' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 100px 100px, 60px 60px;
+    opacity: 0.15;
+  }
+  
+  /* Fancy scrollbars */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--accent) / 0.3);
+    border-radius: 10px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--accent) / 0.5);
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  .scrollbar-thumb-accent\/20::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--accent) / 0.2);
+  }
+  
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Custom scrollbar (global) */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary/50 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-accent/50 to-primary/50 rounded-full border-2 border-secondary;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply from-accent/70 to-primary/70;
+  }
+}
+
+@layer components {
+  .font-medieval {
+    font-family: 'MedievalSharp', cursive;
+  }
+  
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .font-cinzel-decorative {
+    font-family: 'Cinzel Decorative', serif;
+  }
+  
+  .font-lora {
+    font-family: 'Lora', serif;
+  }
+  
+  .font-fell {
+    font-family: 'IM Fell English', serif;
+  }
+  
+  /* Fantasy Border */
+  .fantasy-border {
+    @apply relative;
+  }
+  
+  .fantasy-border::before {
+    content: "";
+    @apply absolute top-0 left-0 right-0 bottom-0 border-2 border-accent/70 pointer-events-none;
+    clip-path: polygon(
+      0% 5%, 5% 0%, 95% 0%, 100% 5%,
+      100% 95%, 95% 100%, 5% 100%, 0% 95%
+    );
+  }
+  
+  .fantasy-border::after {
+    content: "";
+    @apply absolute top-2 left-2 right-2 bottom-2 border border-accent/30 pointer-events-none;
+    clip-path: polygon(
+      0% 8%, 8% 0%, 92% 0%, 100% 8%,
+      100% 92%, 92% 100%, 8% 100%, 0% 92%
+    );
+  }
+  
+  /* Magical pulse effect */
+  .magic-pulse {
+    @apply relative;
+  }
+  
+  .magic-pulse::after {
+    content: '';
+    @apply absolute w-full h-full top-0 left-0 bg-accent/40 rounded-full;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    70% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+  /* Sparkle animation */
+  .animate-sparkle {
+    animation: sparkle 2s infinite;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(0.8);
+    }
+  }
+  
+  /* Perspective and 3D transforms */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front, .card-back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+  }
+  
+  /* Card Carousel Styles */
+  .card-carousel-container {
+    @apply relative overflow-hidden rounded-md;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-carousel-container::before {
+    content: "";
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-secondary/30 pointer-events-none;
+    z-index: 1;
+  }
+  
+  .card-carousel-container::after {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full pointer-events-none;
+    background-image: linear-gradient(to right, rgba(var(--card), 1) 0%, rgba(var(--card), 0) 15%, rgba(var(--card), 0) 85%, rgba(var(--card), 1) 100%);
+    z-index: 2;
+  }
+  
+  /* Paper texture for cards */
+  .paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,10 Q50,5 70,10 Q75,30 70,50 Q50,55 30,50 Q25,30 30,10' fill='none' stroke='%23d4a45f' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+  
+  /* Ancient scroll effect */
+  .scroll-edge {
+    @apply relative overflow-hidden;
+  }
+  
+  .scroll-edge::before {
+    content: '';
+    @apply absolute left-0 top-0 h-full w-8 pointer-events-none z-10;
+    background-image: linear-gradient(to right, 
+      rgba(212, 164, 95, 0.2) 0%, 
+      rgba(212, 164, 95, 0) 100%
+    );
+  }
+  
+  .scroll-edge::after {
+    content: '';
+    @apply absolute right-0 top-0 h-full w-8 pointer-events-none z-10;
+    background-image: linear-gradient(to left, 
+      rgba(212, 164, 95, 0.2) 0%, 
+      rgba(212, 164, 95, 0) 100%
+    );
+  }
+  
+  /* Parchment effect */
+  .parchment {
+    background-color: hsl(var(--parchment));
+    background-image: 
+      radial-gradient(at 45% 30%, rgba(255, 236, 184, 0.4) 0%, transparent 70%), 
+      radial-gradient(at 20% 80%, rgba(242, 222, 174, 0.2) 0%, transparent 70%);
+    box-shadow: inset 0 0 20px rgba(143, 116, 75, 0.15);
+  }
+  
+  /* D&D themed decorative elements */
+  .dice-d20 {
+    position: relative;
+    width: 40px; 
+    height: 40px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  
+  .dice-d20::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: hsl(var(--accent) / 0.2);
+    z-index: 1;
+  }
+  
+  .dice-d20::after {
+    content: '20';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    color: hsl(var(--accent-foreground));
+    z-index: 2;
+  }
+  
+  /* Dragon scale texture */
+  .dragon-scales {
+    background-color: hsl(var(--primary));
+    background-image: 
+      radial-gradient(circle at 50% 0, 
+        hsl(var(--primary) / 0.8) 25%, 
+        hsl(var(--primary) / 0.3) 45%, 
+        transparent 65%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+  }
+  
+  /* Leather texture */
+  .leather-texture {
+    background-color: hsl(var(--leather));
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px),
+      linear-gradient(to bottom, hsl(var(--leather)), hsl(25 40% 35%));
+  }
+  
+  /* Scroll border */
+  .scroll-border {
+    position: relative;
+    border: 2px solid hsl(var(--wood-dark));
+    border-radius: 0.25rem;
+  }
+  
+  .scroll-border::before,
+  .scroll-border::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    top: 0;
+    background: hsl(var(--wood-light));
+    border: 2px solid hsl(var(--wood-dark));
+  }
+  
+  .scroll-border::before {
+    left: -10px;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+  }
+  
+  .scroll-border::after {
+    right: -10px;
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+  }
+  
+  /* Book cover */
+  .book-cover {
+    position: relative;
+    background: hsl(var(--leather));
+    border: 4px solid hsl(var(--wood-dark));
+    border-radius: 3px;
+    box-shadow: 
+      0 0 0 1px hsl(var(--gold) / 0.5),
+      0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .book-cover::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background: 
+      linear-gradient(45deg, transparent 48%, hsl(var(--gold)) 48%, hsl(var(--gold)) 52%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, hsl(var(--gold)) 48%, hsl(var(--gold)) 52%, transparent 52%);
+    background-size: 16px 16px;
+    background-position: 0 0;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
+  /* Shield decoration */
+  .shield-decoration {
+    position: relative;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
+  }
+  
+  /* Sword divider */
+  .sword-divider {
+    position: relative;
+    height: 2px;
+    background-color: hsl(var(--primary) / 0.5);
+    margin: 1rem 0;
+  }
+  
+  .sword-divider::before,
+  .sword-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 6px;
+    background-color: hsl(var(--accent));
+  }
+  
+  .sword-divider::before {
+    left: 0;
+    clip-path: polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%);
+  }
+  
+  .sword-divider::after {
+    right: 0;
+    clip-path: polygon(100% 0%, 20% 0%, 0% 50%, 20% 100%, 100% 100%);
+  }
+  
+  /* Dungeon stone texture */
+  .dungeon-stone {
+    background-color: #2c2c2c;
+    background-image: 
+      linear-gradient(335deg, hsl(30 5% 35%) 23px, transparent 23px),
+      linear-gradient(155deg, hsl(30 5% 35%) 23px, transparent 23px),
+      linear-gradient(335deg, hsl(30 5% 35%) 23px, transparent 23px),
+      linear-gradient(155deg, hsl(30 5% 35%) 23px, transparent 23px);
+    background-size: 58px 58px;
+    background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  }
+  
+  /* Diamond pattern */
+  .bg-pattern-diamond {
+    background-image: linear-gradient(45deg, hsl(var(--gold) / 0.5) 25%, transparent 25%), 
+                      linear-gradient(-45deg, hsl(var(--gold) / 0.5) 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, hsl(var(--gold) / 0.5) 75%),
+                      linear-gradient(-45deg, transparent 75%, hsl(var(--gold) / 0.5) 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+  }
+}
